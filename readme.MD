@@ -26,7 +26,7 @@ OPENAI_API_KEY=your_openai_api_key_here
 Optionally, you can publish the package configuration to customize the AI enhancements:
 
 ```bash
-php artisan vendor:publish --provider="RicardoVanDerSpoel\LaravelSmartMigrations\LaravelSmartMigrationsServiceProvider"
+php artisan vendor:publish --provider="RicardoVanDerSpoel\LaravelSmartMigrations\Providers\SmartMigrationServiceProvider"
 ```
 
 ## Usage
