@@ -1,6 +1,6 @@
 {
     "name": "ricardovanderspoel/laravel-smart-migrations",
-    "description": "A description of your package",
+    "description": "Supercharge your Laravel migrations with AI! Laravel Smart Migrations uses OpenAI's GPT-3 to automate the generation of essential files like models, controllers, and more based on your migrations. Boost efficiency, adhere to best practices, and customize AI enhancements for your project. Elevate your Laravel workflow with smart migrations!",
     "type": "library",
     "require": {
         "php": "^8.1",
