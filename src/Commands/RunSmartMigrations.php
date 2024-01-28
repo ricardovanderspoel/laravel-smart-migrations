@@ -3,7 +3,6 @@
 namespace RicardoVanDerSpoel\LaravelSmartMigrations\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 use RicardoVanDerSpoel\LaravelSmartMigrations\Services\SmartMigrationService;
 use RicardoVanDerSpoel\LaravelSmartMigrations\Services\OpenAIService;
 
