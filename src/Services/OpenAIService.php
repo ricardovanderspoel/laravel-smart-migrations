@@ -26,6 +26,8 @@ class OpenAIService
             $enhancedContent = $this->generateText(implode("\n", $context));
             $this->saveEnhancedContent($modelName, $enhancedContent, $type);
         }
+
+        $this->generateTestFile($modelName);
     }
 
     protected function generateText($context)
@@ -71,6 +73,7 @@ class OpenAIService
             'request' => app_path("Http/Requests/{$modelName}Request.php"),
             'resource' => app_path("Http/Resources/{$modelName}Resource.php"),
             'controller' => app_path("Http/Controllers/{$modelName}Controller.php"),
+            'test' => base_path("tests/Feature/{$modelName}Test.php"),
             default => null,
         };
     }
@@ -79,5 +82,22 @@ class OpenAIService
         $content = str_replace("```php", "", $content);
         $content = str_replace("```", "", $content);
         return preg_replace('/^\s*\n/', '', $content);
+    }
+
+    protected function generateTestFile($modelName)
+    {
+        $enhancedFiles = ['model', 'migration', 'factory', 'seeder', 'request', 'resource', 'controller'];
+        $context = "Generate phpunit tests for each controller method of model $modelName. Do not create anything that is not finished as it will be implemented automatically. Ensure the generated code starts with <?php and does not include placeholder comments, text or explainations in your response. The structure of the response is very important. :\n\n";
+
+        foreach ($enhancedFiles as $type) {
+            $filePath = $this->getFilePath($modelName, $type);
+            if ($filePath && file_exists($filePath)) {
+                $fileContent = file_get_contents($filePath);
+                $context .= ucfirst($type) . " content:\n" . $fileContent . "\n\n";
+            }
+        }
+
+        $testContent = $this->generateText($context);
+        $this->saveEnhancedContent($modelName, $testContent, 'test');
     }
 }
