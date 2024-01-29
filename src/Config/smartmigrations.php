@@ -1,31 +1,67 @@
 <?php
 
+$phpVersion = "8.1";
+$laravelVersion = "10";
+
 return [
-    'openai_model' => 'gpt-3.5-turbo-1106',
+    'openai_model' => 'gpt-4-0125-preview',
+    //'openai_model' => 'gpt-3.5-turbo-1106',
     'enhancements' => [
         'model' => [
-            'context' => "Generate a Laravel model enhancement that accurately reflects a real-life application, including relationships between models, data type casts, and any necessary getters/setters for attribute manipulation. Your enhancement should directly correlate to the provided migration schema and current model structure. Do not create anything that is not finished as it will be implemented automatically. Ensure the generated code starts with <?php and does not include placeholder comments, text or explainations in your response. The structure of the response is very important.",
+            'context' => "This is a file generator, aimed to return a response starting with '<?php', including necessary namespace and use statements, without any text explanation or inline comments. The generated file, intended for Laravel $laravelVersion on PHP $phpVersion, should:
+            - Reflect a fully working PHP class modeling database structure and relationships based on a migration schema.
+            - Ensure attributes are appropriately casted, and necessary accessors or mutators are included.
+            - Omit unused methods or placeholders, contributing to a clean, immediately deployable class.
+            It is crucial to use '<?php' at the start of the generated code to ensure seamless automatic incorporation.",
             'context_files' => ['migration', 'model'],
         ],
         'factory' => [
-            'context' => "Create a Laravel factory enhancement using Faker to generate realistic and relevant data. The enhancement should consider the specific fields and data types outlined in the model, ensuring that the generated data is suitable for testing and development purposes. Do not create anything that is not finished as it will be implemented automatically. Ensure the generated code starts with <?php and does not include placeholder comments, text or explainations in your response. The structure of the response is very important.",
+            'context' => "This request generates a factory file for Laravel $laravelVersion on PHP $phpVersion, starting with '<?php' and void of any preceding text, explanation, or inline comments. Expected contents include:
+            - Namespace declaration and relevant use statements.
+            - A factory definition utilizing Faker to generate realistic data, considering defined field types and model relationships.
+            - Exclusion of any non-functional, placeholder, or unused methods from the output.
+            The emphasis is on generating a fully working PHP file that can be immediately implemented.",
             'context_files' => ['migration', 'factory'],
         ],
         'seeder' => [
-            'context' => "Develop a Laravel seeder enhancement with the aim of populating the database with realistic test data. This enhancement should leverage the factory definitions to create data that is relevant to the model's real-world application. Do not create anything that is not finished as it will be implemented automatically. Ensure the generated code starts with <?php and does not include placeholder comments, text or explainations in your response. The structure of the response is very important.",
+            'context' => "This file generator creates a seeder file for Laravel $laravelVersion on PHP $phpVersion, with the output starting with '<?php', omitting any introductory text, explanations, or inline comments. Requirements include:
+            - Correct namespace and usage statements to support immediate functionality.
+            - Utilization of factories to seed database tables with data reflective of real-world applications.
+            - Avoidance of placeholder code and ensuring the absence of non-functional methods.
+            The generated PHP file should be readily integrable within the application.",
             'context_files' => ['model', 'seeder', 'factory'],
         ],
         'request' => [
-            'context' => "Craft a Laravel request validation enhancement that introduces validation rules and authorization logic tailored to the model's attributes and business logic. Ensure that the enhancement is comprehensive, covering all necessary validation scenarios to maintain data integrity. Do not create anything that is not finished as it will be implemented automatically. Ensure the generated code starts with <?php and does not include placeholder comments, text or explainations in your response. The structure of the response is very important.",
+            'context' => "This task involves generating a request validation file for Laravel $laravelVersion on PHP $phpVersion, ensuring the file starts with '<?php' and includes no textual explanations or inline comments. The completion requires:
+            - Proper namespace and use statements for instant use.
+            - Defined validation rules aligning with the model's attributes to safeguard data integrity.
+            - Production of a refined PHP class sans any placeholder or redundant methods.
+            Aimed to yield an actionable request validation class, fulfilling Laravel's request handling conventions.",
             'context_files' => ['model', 'request'],
         ],
         'resource' => [
-            'context' => "Enhance a Laravel resource file to format outgoing JSON responses meticulously. This enhancement should consider the model's attributes and relationships, ensuring that the resource output is both accurate and optimized for consumption in client applications. Do not create anything that is not finished as it will be implemented automatically. Ensure the generated code starts with <?php and does not include placeholder comments, text or explainations in your response. The structure of the response is very important.",
+            'context' => "The objective is to produce a resource file for Laravel $laravelVersion on PHP $phpVersion, prefaced with '<?php' and excluding any form of text explanation or inline commentary. Essential elements encompass:
+            - Necessary namespace and use declarations for proper functionality.
+            - Structured transformation of model data into JSON format, tailored for client consumption.
+            - Elimination of any placeholder or ineffective methods from the final code.
+            The endeavor ensures the delivery of a deployable resource class, crafted to enhance data presentation in client applications.",
             'context_files' => ['model', 'resource'],
         ],
         'controller' => [
-            'context' => "Implement a set of CRUD operations within a Laravel controller file, adhering strictly to RESTful design principles. The enhancement should seamlessly integrate with the model, request, and resource enhancements to provide a cohesive and logically structured controller for managing model data. Do not create anything that is not finished as it will be implemented automatically. Ensure the generated code starts with <?php and does not include placeholder comments, text or explainations in your response. The structure of the response is very important.",
+            'context' => "This command prompts the creation of a controller file for Laravel $laravelVersion on PHP $phpVersion, initiating with '<?php' and devoid of prefatory text, explanations, or inline comments. It necessitates:
+            - Appropriate namespace and use statements, facilitating immediate deployment.
+            - Implementation of CRUD operations congruent with RESTful design principles.
+            - Refraining from including non-essential, placeholder, or empty methods.
+            The process is designed to generate a controller class ready for integration, promoting seamless RESTful API creation.",
             'context_files' => ['model', 'request', 'resource', 'controller'],
+        ],
+        'test' => [
+            'context' => "This configuration leads to the generation of a PHPUnit test file for Laravel $laravelVersion on PHP $phpVersion, beginning with '<?php' and free from any introductory text, explanations or inline comments. The configuration aims for:
+            - Correct namespace inclusion and the adoption of necessary use statements.
+            - Creation of comprehensive tests for each method in the controller, covering both success and failure scenarios.
+            - Exclusion of unfinished, superfluous, or placeholder methods for a clean, operational test class.
+            This setup guarantees the production of a PHPUnit test class, facilitating immediate and effective testing of the application functionalities.",
+            'context_files' => ['model', 'request', 'resource', 'controller', 'factory', 'seeder'],
         ],
     ],
 ];
