@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'openai_model' => 'gpt-3.5-turbo-1106',
     'enhancements' => [
         'model' => [
             'context' => "Generate a Laravel model enhancement that accurately reflects a real-life application, including relationships between models, data type casts, and any necessary getters/setters for attribute manipulation. Your enhancement should directly correlate to the provided migration schema and current model structure. Do not create anything that is not finished as it will be implemented automatically. Ensure the generated code starts with <?php and does not include placeholder comments, text or explainations in your response. The structure of the response is very important.",

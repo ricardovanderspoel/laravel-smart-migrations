@@ -32,8 +32,9 @@ class OpenAIService
 
     protected function generateText($context)
     {
+        $model = config('smartmigrations.openai_model');
         $response = $this->client->chat()->create([
-            'model' => 'gpt-3.5-turbo-1106',
+            'model' => $model,
             'messages' => [['role' => 'user', 'content' => $context]],
             'max_tokens' => 1024,
             'n' => 1,
