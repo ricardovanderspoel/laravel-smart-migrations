@@ -5,6 +5,7 @@ namespace RicardoVanDerSpoel\LaravelSmartMigrations\Commands;
 use Illuminate\Console\Command;
 use RicardoVanDerSpoel\LaravelSmartMigrations\Services\SmartMigrationService;
 use RicardoVanDerSpoel\LaravelSmartMigrations\Services\OpenAIService;
+use RicardoVanDerSpoel\LaravelSmartMigrations\Services\TestAndImproveService;
 
 class RunSmartMigrations extends Command
 {
@@ -13,7 +14,8 @@ class RunSmartMigrations extends Command
 
     public function __construct(
         private SmartMigrationService $smartMigrationService,
-        private OpenAIService $openAIService
+        private OpenAIService $openAIService,
+        private TestAndImproveService $testAndImproveService
     ) {
         parent::__construct();
     }
@@ -44,7 +46,13 @@ class RunSmartMigrations extends Command
 
             $this->openAIService->enhanceFilesContent($modelName, $migrationPath);
 
+            //$this->call('migrate', ['--path' => $migrationPath]);
+
+            //$this->testAndImproveService->runTestsAndImprove($modelName);
+
             $this->info("Completed smart migration processing for: {$modelName}");
         }
+
+
     }
 }
